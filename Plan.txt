@@ -1,0 +1,46 @@
+methys/
+├── .github/workflows/          # CI/CD: Automated testing & publishing
+├── pyproject.toml              # Project metadata & build dependencies
+├── README.md                   # Library entry point & documentation
+├── LICENSE                     # Apache 2.0 license
+├── src/
+│   └── methys/
+│       ├── __init__.py         # + __all__ (Exposes only public API)
+│       ├── engine/
+│       │   ├── orchestrator.py
+│       │   │   ├── + NeuroAutomator(class)   # The "PyCaret" gateway
+│       │   │   ├── + setup()                 # Public: Data ingestion
+│       │   │   ├── + compare_models()        # Public: Leaderboard
+│       │   │   ├── # _validate_data_types()  # Protected: Logic check
+│       │   │   └── - __build_engine_state()  # Private: Internal setup
+│       │   └── leakage.py
+│       │       ├── + check_data_integrity()  # Public: User check
+│       │       └── # _run_time_series_split()# Protected: Algorithmic core
+│       ├── models/
+│       │   ├── base.py
+│       │   │   ├── + BaseModel(class)        # Public interface
+│       │   │   └── # _register_components()  # Protected: State init
+│       │   ├── vision.py                     # + VisionModel(class)
+│       │   └── tabular.py                    # + TabularModel(class)
+│       ├── training/
+│       │   ├── trainer.py
+│       │   │   ├── + Trainer(class)          # Public: User runner
+│       │   │   ├── + train_epoch()           # Public: Main loop
+│       │   │   └── # _calculate_gradient()   # Protected: Math engine
+│       │   └── loss_funcs.py
+│       │       └── + get_loss_function()     # Public: Registry
+│       ├── integrations/
+│       │   ├── spark.py
+│       │   │   ├── + SparkBridge(class)      # Public: Data converter
+│       │   │   └── # _convert_rdd_to_df()    # Protected: Java/Py bridge
+│       │   └── hadoop.py
+│       │       └── + mount_hdfs_path()       # Public: FS helper
+│       └── utils/
+│           ├── logger.py
+│           │   └── + get_logger()            # Public: Logging conf
+│           └── helpers.py
+│               └── # _validate_environment() # Protected: Dependency check
+├── tests/
+│   ├── test_orchestrator.py
+│   └── test_integrations.py
+└── docs/s
