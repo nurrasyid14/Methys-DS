@@ -9,16 +9,18 @@ pyspark==3.5.0
 scikit-learn==1.4.0
 xgboost==2.0.3
 lightgbm==4.3.0
-catboost==1.2.2        
+catboost==1.2.2
+imbalanced-learn==0.12.0
+
 # Forecasting Suite
-darts==0.28.0            # The orchestration hub for time series
-statsmodels==0.14.1      # For classical statistical time-series models
-prophet==1.1.5           # For business-seasonality forecasting
+darts==0.28.0
+statsmodels==0.14.1
+prophet==1.1.5
 
 # Neurocomputing & Sequence Streams
 torch==2.2.0
-transformers==4.38.0   # Essential for sequence/policy-analysis
-accelerate==0.27.0     # Optimized training
+transformers==4.38.0
+accelerate==0.27.0
 
 # Orchestration & Web
 pyyaml==6.0.1
