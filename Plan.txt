@@ -1,46 +1,43 @@
-methys/
-├── .github/workflows/          # CI/CD: Automated testing & publishing
-├── pyproject.toml              # Project metadata & build dependencies
-├── README.md                   # Library entry point & documentation
-├── LICENSE                     # Apache 2.0 license
-├── src/
-│   └── methys/
-│       ├── __init__.py         # + __all__ (Exposes only public API)
-│       ├── engine/
-│       │   ├── orchestrator.py
-│       │   │   ├── + NeuroAutomator(class)   # The "PyCaret" gateway
-│       │   │   ├── + setup()                 # Public: Data ingestion
-│       │   │   ├── + compare_models()        # Public: Leaderboard
-│       │   │   ├── # _validate_data_types()  # Protected: Logic check
-│       │   │   └── - __build_engine_state()  # Private: Internal setup
-│       │   └── leakage.py
-│       │       ├── + check_data_integrity()  # Public: User check
-│       │       └── # _run_time_series_split()# Protected: Algorithmic core
-│       ├── models/
-│       │   ├── base.py
-│       │   │   ├── + BaseModel(class)        # Public interface
-│       │   │   └── # _register_components()  # Protected: State init
-│       │   ├── vision.py                     # + VisionModel(class)
-│       │   └── tabular.py                    # + TabularModel(class)
-│       ├── training/
-│       │   ├── trainer.py
-│       │   │   ├── + Trainer(class)          # Public: User runner
-│       │   │   ├── + train_epoch()           # Public: Main loop
-│       │   │   └── # _calculate_gradient()   # Protected: Math engine
-│       │   └── loss_funcs.py
-│       │       └── + get_loss_function()     # Public: Registry
-│       ├── integrations/
-│       │   ├── spark.py
-│       │   │   ├── + SparkBridge(class)      # Public: Data converter
-│       │   │   └── # _convert_rdd_to_df()    # Protected: Java/Py bridge
-│       │   └── hadoop.py
-│       │       └── + mount_hdfs_path()       # Public: FS helper
-│       └── utils/
-│           ├── logger.py
-│           │   └── + get_logger()            # Public: Logging conf
-│           └── helpers.py
-│               └── # _validate_environment() # Protected: Dependency check
-├── tests/
-│   ├── test_orchestrator.py
-│   └── test_integrations.py
-└── docs/s
+Methys Project Plan
+===================
+
+Purpose
+-------
+Methys provides a Python-facing orchestration API for a C-powered computation
+engine, with an HTML-first frontend definition layer. It is not a Streamlit
+application and does not provide a web server itself.
+
+Repository structure
+--------------------
+src/methys/
+  __init__.py        Public Python API
+  frontend.py        HTML, CSS, and JavaScript block composition
+  native.py          Future native-binding boundary
+
+native/
+  include/methys/    Stable public C headers
+  src/               C implementations
+  CMakeLists.txt     Native shared-library build
+
+tests/               Python API tests
+docs/                Architecture and build notes
+
+Implementation principles
+-------------------------
+1. Keep algorithms, numerical routines, state, and memory management in C.
+2. Keep Python as a small, ergonomic API and binding layer.
+3. Let callers define frontend blocks with raw HTML and optional CSS/JavaScript.
+4. Let the embedding application choose web serving, routing, and event transport.
+5. Execute PostgreSQL and MongoDB queries through native drivers with bound
+   parameters, never Python driver dependencies.
+6. Treat user-provided browser code as unsafe unless the embedding application
+   sanitises or otherwise trusts it.
+
+Initial milestones
+------------------
+1. Build the native core and expose its version through a Python binding.
+2. Define error handling, owned-memory rules, and opaque C handles.
+3. Add a C query executor using libpq and the MongoDB C driver.
+4. Add the first native data structure and calculation API.
+5. Add frontend event contracts between browser code and the host application.
+6. Package platform-specific native artifacts with Python releases.

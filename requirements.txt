@@ -1,34 +1,3 @@
-# Data Foundations
-numpy==1.26.4
-pandas==2.2.0
-
-# Distributed Data
-pyspark==3.5.0
-
-# The Classification Streams (The "Completeness" Suite)
-scikit-learn==1.4.0
-xgboost==2.0.3
-lightgbm==4.3.0
-catboost==1.2.2
-imbalanced-learn==0.12.0
-
-# Forecasting Suite
-darts==0.28.0
-statsmodels==0.14.1
-prophet==1.1.5
-
-# Neurocomputing & Sequence Streams
-torch==2.2.0
-transformers==4.38.0
-accelerate==0.27.0
-
-# Orchestration & Web
-pyyaml==6.0.1
-tqdm==4.66.1
-streamlit==1.31.0
-fastapi==0.109.0
-uvicorn==0.27.0
-
-# QA
+# Development and QA
 pytest==8.0.0
-pytest-cov==4.1.0
+pytest-cov==5.0.0

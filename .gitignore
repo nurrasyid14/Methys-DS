@@ -5,6 +5,13 @@ __pycache__/
 
 # C extensions
 *.so
+*.dll
+*.dylib
+
+# Native CMake builds
+native/build/
+CMakeCache.txt
+CMakeFiles/
 
 # Distribution / packaging
 .Python
